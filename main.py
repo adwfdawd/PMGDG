@@ -200,12 +200,8 @@ def experiment(log_dir = ''):
     # 随机从每类中抽取10个样本
     selected_indices = []
     samples_per_class = args.sample_nums  # 每类样本数
-    if samples_per_class > 1:
-        for label, indices in class_indices.items():
-            selected_indices += random.sample(indices, samples_per_class)
-    else:
-        for label, indices in class_indices.items():
-            selected_indices += random.sample(indices, samples_per_class)
+    for label, indices in class_indices.items():
+        selected_indices += random.sample(indices, samples_per_class)
     # 创建一个新的子集数据集
     # print(selected_indices)
     subset = torch.utils.data.Subset(train_dataset, selected_indices)
