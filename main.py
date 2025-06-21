@@ -342,23 +342,23 @@ def experiment(log_dir = ''):
         if best_acc1 < teacc1:
             best_acc1 = teacc1
             best_kappa1 = res1["Kappa"]
-            best_g1 = g1
-            best_d1 = d1
+            best_g1 = g1.state_dict()
+            best_d1 = d1.state_dict()
         if best_acc2 < teacc2:
             best_acc2 = teacc2
             best_kappa2 = res2["Kappa"]
-            best_g2 = g2
-            best_d2 = d2
+            best_g2 = g2.state_dict()
+            best_d2 = d2.state_dict()
         if(int((epoch+1)/args.pre_epoch_per_step) + 1 != current_step):
-            g1 = best_g1
-            g2 = best_g2
-            d1 = best_d1
-            d2  =best_d2
+            g1.load_state_dict(best_g1)
+            g2.load_state_dict(best_g2)
+            d1.load_state_dict(best_d1)
+            d2.load_state_dict(best_d2)
         t2 = time.time()
-    g1 = best_g1
-    g2 = best_g2
-    d1 = best_d1
-    d2 = best_d2
+    g1.load_state_dict(best_g1)
+    g2.load_state_dict(best_g2)
+    d1.load_state_dict(best_d1)
+    d2.load_state_dict(best_d2)
     torch.save({'g1': g1.state_dict()}, os.path.join(log_dir, f'best_g1.pth'))
     torch.save({'g2': g2.state_dict()}, os.path.join(log_dir, f'best_g2.pth'))
 
