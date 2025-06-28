@@ -14,7 +14,7 @@ from model.discriminator import discriminator
 from model.pmg import Generator, Dis
 from con_losses import SupConLoss
 from sam import SAM
-parser = argparse.ArgumentParser(description='PyTorch S2AMSnet')
+parser = argparse.ArgumentParser(description='PyTorch PMGDG')
 parser.add_argument('--save_path', type=str, default='results/')
 parser.add_argument('--data_path', type=str, default='datasets/Pavia/')#Houston Pavia hyrank 
 parser.add_argument('--source_name', type=str, default='paviaU',    #paviaU Houston13 Dioni 
